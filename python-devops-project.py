@@ -1,12 +1,11 @@
-print("=" * 80)
-print("First Training: Variables".center(80))
-print("=" * 80)
+print("=" * 46)
+print("Server Configuration".center(46))
+print("=" * 46)
 
-Server = input("choose your Server: ")
+Server = input("choose your Server: ").strip()
 ip = input("Type your IP address: ")
 port = int(input("Choose Your Port: "))
 memory = float(input("choose your memory: "))
-
 dict = {
 "Server": Server,
 "IP": ip,
@@ -16,7 +15,39 @@ dict = {
 "cpu_threshold": 80.5
 }
 
-print("=" * 80)
+print("=" * 46)
 
 for key, value in dict.items():
     print(f"{key:15}: {value}")
+
+print("=" * 46)
+print("==>📋 OUR SERVERS<==".center(46))
+print("=" * 46)
+
+servers = ["web-01", "web-02", "db-01", "stage-01", "stage-db", "dev-01"]
+for i in servers:
+    print(f"{servers.index(i) + 1}. {i}")
+
+print("=" * 46)
+print("==>📋 OUR INFRASTRUCTURE<==".center(46))
+print("=" * 46)
+
+infrastructure = {
+    "production": {
+        "servers": ["web-01", "web-02", "db-01"],
+        "region": "us-east-1",
+        "active": True
+    },
+    "staging": {
+        "servers": ["stage-01", "stage-db"],
+        "region": "us-west-1",
+        "active": True
+    },
+    "development": {
+        "servers": ["dev-01"],
+        "region": "us-west-2",
+        "active": False
+    }
+}
+for en, data in infrastructure.items():
+    print(f"{en.upper():13}: {len(data["servers"])} servers in {data["region"]}")
