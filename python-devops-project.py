@@ -77,17 +77,22 @@ print("=" * 46)
 print("Depolyment Notification".center(46))
 print("=" * 46)
 
+from datetime import date
 app_info = {
 "Application": "UserService",
-"Version": "2.1.0",
+"Version": "2.5.3",
 "Environment": "production",
 "Deployed by": "devops-team",
-"Deployment Date": "19/4/2026",
+"Deployment Date": date.today(),
 "Success": True,
 "Logs Location": "/var/log/app.log"
 }
+print("Depolyment Notification".center(46))
 for key, value in app_info.items():
-    print(f"{key:18}: {value}")
+    if key == "Status":
+        print(f"{key:18}: ✅ success") if value == True else print(f"{key:18}: ❌ FAILED")
+    else:
+        print(f"{key:18}: {value}")
 
 print("=" * 46)
 print("Server Status Check:".center(46))
