@@ -66,7 +66,23 @@ app_info = {
 "Logs Location": "/var/log/app.log"
 }
 for key, value in app_info.items():
-    if key == "Status":
-        print(f"{key:18}: ✅ success") if value == True else print(f"{key:18}: ❌ FAILED")
+    print(f"{key:18}: {value}")
+
+print("=" * 46)
+print("Server Status Check:".center(46))
+print("=" * 46)
+
+status = {
+    "CPU usage": 50,
+    "Memory usage": 85,
+    "Disk usage": 65
+}
+for key, value in status.items():
+    if value > 90:
+        print(f"❌ {"CRITICAL":10}: {key} is critical!")
+    elif value > 80:
+        print(f"⚠️  {"WARNING":10}: {key} is high")
+    elif value > 60:
+        print(f"🟡 {"NOTICE":10}: {key} is moderate")
     else:
-        print(f"{key:18}: {value}")
+        print(f"✅ {"OK":10}: {key} is normal")
