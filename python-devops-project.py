@@ -51,3 +51,22 @@ infrastructure = {
 }
 for en, data in infrastructure.items():
     print(f"{en.upper():13}: {len(data["servers"])} servers in {data["region"]}")
+
+print("=" * 46)
+print("Depolyment Notification".center(46))
+print("=" * 46)
+
+app_info = {
+"Application": "UserService",
+"Version": "2.1.0",
+"Environment": "production",
+"Deployed by": "devops-team",
+"Deployment Date": "19/4/2026",
+"Success": True,
+"Logs Location": "/var/log/app.log"
+}
+for key, value in app_info.items():
+    if key == "Status":
+        print(f"{key:18}: ✅ success") if value == True else print(f"{key:18}: ❌ FAILED")
+    else:
+        print(f"{key:18}: {value}")
