@@ -23,21 +23,49 @@ print("=" * 46)
 print("Server Configuration".center(46))
 print("=" * 46)
 
-Server = input("choose your Server: ").strip()
-ip = input("Type your IP address: ")
-port = int(input("Choose Your Port: "))
-memory = float(input("choose your memory: "))
+def check_ip_address():
+    while True:
+        try:
+            ip = input("choose your IP: ")
+            if ip == "0.0.0.0":
+                raise ConnectionError("Invalid IP address")
+            if ip.count(".") != 3:
+                raise ValueError("Invalid IP format")
+            print(f"✅ Checking {ip}...")
+        except ValueError as e:
+            print(f"❌ ValueError: {e}")
+        except ConnectionError as e:
+            print(f"❌ ConnectionError: {e}")
+        except Exception as e:
+            print(f"❌ Unexpected error: {e}")
+        else:
+            print(f"✅ {ip} is reachable")
+            return True
+def check_port():
+    while True:
+        try:
+            try_port = input("choose your port: ")
+            port = int(try_port)
+            if port < 1 or port > 65535:
+                raise ValueError ("Port must be between 1 and 65535")
+            else:
+                
+                return port
+        except ValueError as e:
+            print(f"❌ ValueError: Port must be a number between 1 and 65535")
+Server = input("choose your Server: ")
+ip = check_ip_address()
+port = check_port()
+memory = (input("choose your memory: "))
+
 dict = {
 "Server": Server,
 "IP": ip,
 "port": port,
 "is_running": True,
-"memory": f"{memory} GB",
+"memory": "512.0 MB" if memory == "" else f"{float(memory)} MB",
 "cpu_threshold": 80.5
 }
-
-print("=" * 46)
-
 for key, value in dict.items():
     print(f"{key:15}: {value}")
 
