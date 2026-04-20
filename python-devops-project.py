@@ -107,3 +107,17 @@ for key, value in status.items():
         print(f"🟡 {"NOTICE":10}: {key} is moderate")
     else:
         print(f"✅ {"OK":10}: {key} is normal")
+
+print("=" * 46)
+print("Advanced Serve Status".center(46))
+print("=" * 46)
+
+servers = [
+    {"name": "web-01", "cpu": 45, "memory": 60, "status": "running"},
+    {"name": "web-02", "cpu": 85, "memory": 82, "status": "running"},
+    {"name": "db-01", "cpu": 92, "memory": 95, "status": "running"},
+    {"name": "api-01", "cpu": 30, "memory": 40, "status": "running"},
+]
+for i, server in enumerate(servers, 1):
+    status_icon = "✅" if server["cpu"] < 80 else "⚠️ " if server["cpu"] < 90 else  "❌"
+    print(f"{i}. {status_icon } {server["name"]:7}: CPU => {server["cpu"]} | Memory => {server["memory"]}")
