@@ -106,21 +106,57 @@ print("Depolyment Notification".center(46))
 print("=" * 46)
 
 from datetime import date
+def eng_name():
+        while True:
+            try:
+                eng = input("Type your Name: ").strip().capitalize()
+                if not eng:
+                    raise ValueError ("Application name cannot be empty")
+                if eng not in ["Ziad", "Nader", "Kkloud", "Ghada"]:
+                    raise ValueError("⚠️  unauthorized Person")
+                return eng
+            except ValueError as e:
+                print(f"{e}")
+def app_name():
+    while True:
+        try:
+            app = input("Type your Application name: ").strip().capitalize()
+            if not app:
+                raise ValueError ("❌ Application name cannot be empty")
+            return app
+        except ValueError as e:
+            print(f"{e}")
+def version():
+    while True:
+        try:
+            version = input("Type your Application Version(ex:vx.x.x): ").strip().capitalize()
+            if not version:
+                raise ValueError("❌ Version cannot be empty")
+            return version
+        except ValueError as e:
+            print(f"{e}")
+def environment():
+    while True:
+        try:
+            env = input("Choose your Environment(dev, staging, prod): ").strip()
+            if not env:
+                raise ValueError ("❌ Environment cannot be empty")
+            if env not in ["dev", "staging", "prod"]:
+                raise ValueError("❌ Invalid Environment")
+            return env
+        except ValueError as e:
+            print(f"{e}")
 app_info = {
-"Application": "UserService",
-"Version": "2.5.3",
-"Environment": "production",
-"Deployed by": "devops-team",
+"Application": app_name(),
+"Version": version(),
+"Environment": environment(),
+"Deployed by": eng_name(),
 "Deployment Date": date.today(),
-"Success": True,
 "Logs Location": "/var/log/app.log"
 }
 print("Depolyment Notification".center(46))
 for key, value in app_info.items():
-    if key == "Status":
-        print(f"{key:18}: ✅ success") if value == True else print(f"{key:18}: ❌ FAILED")
-    else:
-        print(f"{key:18}: {value}")
+    print(f"{key:18}: {value}")
 
 print("=" * 46)
 print("Server Status Check:".center(46))
