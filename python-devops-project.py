@@ -1,4 +1,25 @@
 print("=" * 46)
+print("Password Authentication".center(46))
+print("=" * 46)
+
+print("Attempting to connect to server...".center(46))
+password = 12345
+attempts = 0
+max_attempts = 5
+connected = False
+while attempts < max_attempts:
+    userPassword = int(input("Type the Password: "))
+    attempts += 1
+    if userPassword == password:
+        connected = True
+        print("✅ connected successfully")
+        break
+    else:
+        print(f"❌ Wrong Password\nAttempt {attempts}/{max_attempts}...")
+if not connected:
+    print("❌ Max attempts reached. Connection failed.")
+
+print("=" * 46)
 print("Server Configuration".center(46))
 print("=" * 46)
 
